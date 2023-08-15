@@ -3,9 +3,32 @@ import { db } from '../../Firebase/config';
 import {collection, getDocs, query, where} from "firebase/firestore"
 import { login as LoginUser } from '../../Redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
+import { styled } from 'styled-components';
+import { SubmitButton } from '../Buttons/submitButton';
 
 
-
+const StyledForm = styled.form`
+display: flex;
+align-items: center;
+flex-direction: column;
+gap: 1.5rem;
+`
+const StyledInput = styled.input`
+border: 1px solid #0a66fa;
+height: 3rem;
+width: 20rem;
+`
+const StyledLabel = styled.label`
+display: inline-block;
+text-align: left;
+margin-bottom: 5px;
+font-size: 1.4rem;
+color: #0a66fa;
+`
+const StyledInputGroup = styled.div`
+display: flex;
+flex-direction: column;
+`
 export const LoginForm = () => {
  
   const usersRef = collection(db, "users")
@@ -30,7 +53,6 @@ export const LoginForm = () => {
 
     docs.forEach((doc) =>{
       const data = doc.data()
-      console.log("DATA:", data)
       if(data.password === password){
         setError(false)
         dispatch(LoginUser({
@@ -55,12 +77,18 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text"  name="login" value={login} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setLogin(e.target.value)}/>
-      <input type="password" name = "password" value={password}  onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setPassword(e.target.value)}/>
-      <input type="submit" />
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledInputGroup><StyledLabel htmlFor='email'>E-mail:</StyledLabel>
+      <StyledInput type="text" id="email" name="email" value={login} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setLogin(e.target.value)}/></StyledInputGroup>
+      <StyledInputGroup>
+      <StyledLabel htmlFor='password'>Password:</StyledLabel>
+      <StyledInput type="password" name = "password" value={password}  onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setPassword(e.target.value)}/>
+      </StyledInputGroup>
+     
+     <SubmitButton title="Login!" />
+
       {error && <p>Invalid login or password</p>}
-    </form>
+    </StyledForm>
   )
 }
 

@@ -1,7 +1,8 @@
-import { faArrowRightToBracket, faBasketShopping } from "@fortawesome/free-solid-svg-icons"
+import { faArrowRightToBracket, faBasketShopping, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import { styled } from "styled-components"
+import { useSelector } from "react-redux/es/hooks/useSelector"
 
 const StyledSection = styled.section`
 text-align: right;
@@ -43,9 +44,11 @@ margin-right: 5px;
 
 
 export const Topbar = () => {
+  const ifLogged = useSelector((state: any) => state.user.value.logged)
   return (
     <StyledSection>
-      <StyledLink to="/signin"><StyledIcon icon={faArrowRightToBracket} />Login / Register</StyledLink>
+      {!ifLogged && <StyledLink to="/signin"><StyledIcon icon={faArrowRightToBracket} />Login / Register</StyledLink>}
+      {ifLogged && <StyledLink to="/"><StyledIcon icon={faUser} />My account</StyledLink>}
       <StyledSpan><StyledIcon icon={faBasketShopping} />Cart</StyledSpan>
     </StyledSection>
   )

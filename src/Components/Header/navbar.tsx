@@ -5,8 +5,8 @@ export const Navbar = () => {
 
     const StyledNav = styled.nav`
     padding: 0rem 5%;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid #0a66fa;
+    border-bottom: 1px solid #0a66fa;
     font-family: "Bebas Neue";
     margin-bottom: 5rem;
     `
@@ -43,7 +43,7 @@ export const Navbar = () => {
 
     const StyledLink = styled(Link)`
     text-decoration: none;
-    color: black;
+    color: #0a66fa;
 
     &:hover{
         text-decoration: underline;
@@ -67,41 +67,22 @@ export const Navbar = () => {
     <StyledNav><StyledUl>
         <StyledLi><StyledLink to="/">Home</StyledLink></StyledLi>
         <StyledLi>
-            <StyledLink to="/">New</StyledLink>
-        <StyledSubMenu>
-        <StyledLi2><StyledLink to="/">Women</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Men</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Kids</StyledLink></StyledLi2>
-        </StyledSubMenu>
-        </StyledLi>
-        <StyledLi>
-            <StyledLink to="/">Women</StyledLink>
+            <StyledLink to="/products/women">Women</StyledLink>
             <StyledSubMenu>
-        <StyledLi2><StyledLink to="/">T-shirt</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Dress</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Pants</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">U</StyledLink></StyledLi2>
+        <StyledLi2><StyledLink to="/products/women/tshirt">T-shirt</StyledLink></StyledLi2>
+        <StyledLi2><StyledLink to="/products/women/hoodie">Hoodie</StyledLink></StyledLi2>
+        <StyledLi2><StyledLink to="/products/women/dress">Dress</StyledLink></StyledLi2>
         </StyledSubMenu>
             </StyledLi>
         <StyledLi>
-        <StyledLink to="/">Men</StyledLink>
+        <StyledLink to="/products/men">Men</StyledLink>
             <StyledSubMenu>
-        <StyledLi2><StyledLink to="/">T-shirt</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Dress</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Pants</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">U</StyledLink></StyledLi2>
+        <StyledLi2><StyledLink to="/products/men/tshirt">T-shirt</StyledLink></StyledLi2>
+        <StyledLi2><StyledLink to="/products/men/hoodie">Hoodie</StyledLink></StyledLi2>
+        <StyledLi2><StyledLink to="/products/men/pants">Pants</StyledLink></StyledLi2>
         </StyledSubMenu>
         </StyledLi>
-        <StyledLi>
-        <StyledLink to="/">Kids</StyledLink>
-            <StyledSubMenu>
-        <StyledLi2><StyledLink to="/">T-shirt</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Dress</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">Pants</StyledLink></StyledLi2>
-        <StyledLi2><StyledLink to="/">U</StyledLink></StyledLi2>
-        </StyledSubMenu>
-        </StyledLi>
-        <StyledLi><StyledLink to="/">Sale</StyledLink></StyledLi>
+        <StyledLi><StyledLink to="/products/sale">Sale</StyledLink></StyledLi>
         </StyledUl></StyledNav>
   )
 }

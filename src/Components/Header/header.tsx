@@ -1,8 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBasketShopping } from '@fortawesome/free-solid-svg-icons'
 import { styled } from 'styled-components'
 import { Navbar } from './navbar'
+import { Topbar } from './topbar'
 
 const StyledHeader = styled.header`
 padding: 3rem 5%;
@@ -16,11 +16,12 @@ font-family: "Bebas Neue";
 font-size: 4.8rem;
 position: absolute;
 left: 50%;
-transform: translateX(-50%)
+transform: translateX(-50%);
+color: #0a66fa;
 `
 
 const StyledInput = styled.input`
-margin-right: 15rem;
+margin-right: 10rem;
 width: 20rem;
 height: 3rem;
 border: none;
@@ -37,10 +38,11 @@ cursor: pointer;
 
 export const Header = () => {
   return (<>
+  <Topbar />
     <StyledHeader>
         <StyledH1>imadeitup.com</StyledH1>
         <StyledInput type="text" placeholder="Search..."></StyledInput>
-        <StyledIcon icon={faBasketShopping} size="2x" />
+        {/* <StyledIcon icon={faBasketShopping} size="2x" /> */}
     </StyledHeader>
     <Navbar />
     </>

@@ -1,30 +1,20 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { UserInterface } from "../../types/UserInterface";
 
 
 const initialState =  {value:{email: "", firstName: "", lastName: "", country: "", city: "", homeNo: "", phone: "", street: "", streetNo: "", logged: false}}
 
-interface UserStateValue {
-    email: string,
-    firstName: string,
-    lastName: string,
-    country: string,
-    city: string,
-    homeNo: string,
-    phone: string,
-    street: string,
-    streetNo: string,
-    logged: boolean
-}
+
 
 interface UserState {
-    value: UserStateValue
+    value: UserInterface
 }
 
 export const userSlice = createSlice({
     name: "user",
     initialState: initialState as UserState,
     reducers:{
-        login: (state: UserState, action: PayloadAction<UserStateValue>)=>{
+        login: (state: UserState, action: PayloadAction<UserInterface>)=>{
             state.value = {...action.payload}
         },
         logout: (state: UserState) => {

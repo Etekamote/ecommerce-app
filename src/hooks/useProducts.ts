@@ -27,7 +27,10 @@ export function useProducts(whereValue?: string, secondWhereValue?: string): Pro
       
 
       const qSnapShot = await getDocs(q);
-      const fetchedProducts: ProductInterface[] = qSnapShot.docs.map((doc) => doc.data() as ProductInterface);
+      const fetchedProducts: ProductInterface[] = qSnapShot.docs.map((doc) => ({
+        id: doc.id, // Store the document ID using the existing field name
+        ...doc.data() as Object,
+      } as ProductInterface));
       setProducts(fetchedProducts);
     }
 
@@ -36,3 +39,4 @@ export function useProducts(whereValue?: string, secondWhereValue?: string): Pro
 
   return products;
 }
+

@@ -14,10 +14,10 @@ flex-wrap: wrap;
 export const Products = () => {
   const {category, subcategory} = useParams();
   const products = useProducts(category,subcategory)
-  console.log(category)
+
 
 
   return (
-    <StyledProducts>{products.map(product => <ProductItem product={product} />)}</StyledProducts>
+    <StyledProducts >{products.map(product => <ProductItem product={product} key={product.id} />)}</StyledProducts>
   )
 }

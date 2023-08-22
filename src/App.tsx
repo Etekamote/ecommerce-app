@@ -21,7 +21,9 @@ function App() {
         <Route path=":subcategory" element={<Products />} />
         </Route>
       </Route>
-      <Route path="/product" element={<Product />} />
+      <Route path="/product" element={<Product />}>
+      <Route path=":id" element={<Product />} />
+      </Route>
       <Route path="/contact" element={<Contact />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/signin" element={<SignIn />} />

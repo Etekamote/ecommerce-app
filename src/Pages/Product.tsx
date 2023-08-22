@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import {collection, getDocs} from "firebase/firestore"
 import { db } from '../Firebase/config'
+import { useLocation, useParams } from 'react-router-dom'
+import { useProduct } from '../hooks/useProduct'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+
+
+const StyledArticle = styled.article`
+display: flex;
+margin: 0 10rem;
+`
+
+const StyledLeft = styled.div``
+const StyledRight = styled.div``
 
 export const Product = () => {
-  
-  const [data, setData] = useState<any[]>()
+  const {id} = useParams();
+  const navigate = useNavigate()
+  const data = useProduct(id as string)
 
-  useEffect(()=>{
-    const getProdukt = async () =>{
-        const produkt = await getDocs(collection(db, "products"))
-        const filteredProduct = produkt.docs.map((doc) =>({...doc.data(), id: doc.id}))
-        setData(filteredProduct)
-    }
-    getProdukt()
-  })
-
-  const getConsole = () =>{
-    console.log(data)
+  if(data === null){
+    navigate("/")
   }
-
-    return (<>
-     <div>{
-         data?.map((x) =>(
-           <img src={x.img}></img>
-         ))
-         }</div>
-    <button onClick={getConsole}>KLIK</button>
-    </>
+ 
+    return (
+<StyledArticle>
+  <StyledLeft>sss</StyledLeft>
+  <StyledRight>aaassssss</StyledRight>
+</StyledArticle>
+   
+    
 
   )
 }

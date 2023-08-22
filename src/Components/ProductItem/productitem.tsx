@@ -74,9 +74,17 @@ text-decoration: ${props => props.sale ? "line-through": "none"}
 
 `
 
+const StyledLink = styled(Link)`
+text-decoration: none;
+
+&:hover{
+  text-decoration: underline;
+  color: black;
+}
+`
+
 export const ProductItem = ({ product }: { product: ProductInterface }) => {
   const { id, discount, imgs, name, price, sale } = product;
-  console.log(product)
 
   return (
     <StyledArticle>
@@ -86,7 +94,7 @@ export const ProductItem = ({ product }: { product: ProductInterface }) => {
           {sale && <StyledSpan>{discount}%</StyledSpan>}
       </StyledImages>
       <StyledP>
-      <Link to={`../product/${id}`}><StyledH2>{name}</StyledH2></Link>
+      <StyledLink to={`../product/${id}`}><StyledH2>{name}</StyledH2></StyledLink>
       <StyledPriceBox>
         <StyledPrice sale={sale}>${price}</StyledPrice>
         {sale && <StyledPrice sale={false}>${(price * (100 - discount)/100).toFixed(2)}</StyledPrice>}

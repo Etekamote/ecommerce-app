@@ -2,8 +2,8 @@ import {Link} from "react-router-dom"
 import { styled } from 'styled-components';
 const StyledNav = styled.nav`
 padding: 0rem 5%;
-border-top: 1px solid #0a66fa;
-border-bottom: 1px solid #0a66fa;
+border-top: 1px solid #000;
+border-bottom: 1px solid #000;
 font-family: "Bebas Neue";
 margin-bottom: 5rem;
 `
@@ -40,7 +40,7 @@ const StyledLi2 = styled.li`
 
 const StyledLink = styled(Link)`
 text-decoration: none;
-color: #0a66fa;
+color: #000;
 
 &:hover{
     text-decoration: underline;

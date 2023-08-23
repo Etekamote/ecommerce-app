@@ -17,27 +17,27 @@ font-weight: bold;
 const StyledLink = styled(Link)`
 text-decoration: none;
 
-color: #0a66fa;
+color: #000;
 
 &:hover{
-  color: #5999ff;
+  color: #585959;
 }
 
 `
 
 const StyledSpan = styled.span`
-color: #0a66fa;
+color: #000;
 margin-left: 1rem;
 
 &:hover{
-  color: #5999ff;
+  color: #585959;
   cursor: pointer;
 }
 
 `
 
 const StyledIcon = styled(FontAwesomeIcon)`
-color: #033e9c;
+color: #000;
 margin-right: 5px;
 `
 

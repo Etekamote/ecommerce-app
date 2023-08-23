@@ -5,6 +5,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { useProduct } from '../hooks/useProduct'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { InfoBox } from '../Components/InfoBox/infoBox'
 
 
 const StyledArticle = styled.article`
@@ -77,6 +78,8 @@ export const Product = () => {
     <SmallImgs>
       {data?.imgs.map((img)=><StyledSmallImg src={img} alt={data?.name} onClick={()=> setMainImg(img)}></StyledSmallImg>)}
     </SmallImgs>
+    <InfoBox title="Description" content={data?.description || ""} defaultOpen={true} />
+    <InfoBox title="Material" content={data?.material || ""} />
   </StyledLeft>
   <StyledRight>
     <StyledH2>{data?.name}</StyledH2>

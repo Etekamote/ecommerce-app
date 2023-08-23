@@ -17,7 +17,7 @@ font-size: 4.8rem;
 position: absolute;
 left: 50%;
 transform: translateX(-50%);
-color: #0a66fa;
+color: #000;
 `
 
 const StyledInput = styled.input`
@@ -28,13 +28,7 @@ border: none;
 padding: 0 1rem;
 border-bottom: 1px solid grey;
 `
-const StyledIcon = styled(FontAwesomeIcon)`
-cursor: pointer;
 
-&:hover{
-    color: #CDCDCD;
-}
-`
 
 export const Header = () => {
   return (<>
@@ -42,7 +36,7 @@ export const Header = () => {
     <StyledHeader>
         <StyledH1>imadeitup.com</StyledH1>
         <StyledInput type="text" placeholder="Search..."></StyledInput>
-        {/* <StyledIcon icon={faBasketShopping} size="2x" /> */}
+      
     </StyledHeader>
     <Navbar />
     </>

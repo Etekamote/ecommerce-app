@@ -4,7 +4,7 @@ import { ProductInterface } from "../types/ProductInterface";
 import { useEffect, useState } from "react";
 
 export function useProduct(id: string): ProductInterface | null {
-  const [product, setProduct] = useState<ProductInterface | null>(null);
+  const [product, setProduct] = useState<ProductInterface>();
 
   useEffect(() => {
     async function getData() {
@@ -17,13 +17,26 @@ export function useProduct(id: string): ProductInterface | null {
           ...data.data()
         } as ProductInterface;
         setProduct(productData);
-      } else {
-        setProduct(null);
+      } 
+      else{
+        setProduct({
+          id: "",
+          category: "",
+          description: "",
+          discount: 0,
+          imgs: [],
+          material: "",
+          name: "",
+          price: 0,
+          sale: false,
+          subcategory: ""
+      
+      })
       }
     }
 
     getData();
   }, [id]);
 
-  return product;
+  return product || null;
 }

@@ -8,6 +8,7 @@ import { Products } from './Pages/Products';
 import { Contact } from './Pages/Contact';
 import { Faq } from './Pages/Faq';
 import { SignIn } from './Pages/SignIn';
+import { Cart } from './Components/Cart/cart';
 
 
 
@@ -40,6 +41,7 @@ export const Root = () =>{
   return(
     <>
     <Header />
+    <Cart />
     <Outlet />
     </>
   )

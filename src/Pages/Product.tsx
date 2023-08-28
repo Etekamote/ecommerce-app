@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {collection, getDocs} from "firebase/firestore"
-import { db } from '../Firebase/config'
-import { useLocation, useParams } from 'react-router-dom'
+
+import { useParams } from 'react-router-dom'
 import { useProduct } from '../hooks/useProduct'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { InfoBox } from '../Components/InfoBox/infoBox'
 import { SubmitButton } from '../Components/Buttons/submitButton'
 import { useDispatch,} from 'react-redux';
-import {add, remove} from "../Redux/slices/cartSlice"
+import {add} from "../Redux/slices/cartSlice"
 import { useStock } from '../hooks/useStock'
 
 const StyledArticle = styled.article`

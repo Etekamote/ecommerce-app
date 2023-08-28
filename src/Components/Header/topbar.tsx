@@ -2,7 +2,8 @@ import { faArrowRightToBracket, faBasketShopping, faUser } from "@fortawesome/fr
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import { styled } from "styled-components"
-import { useSelector } from "react-redux/es/hooks/useSelector"
+import { useSelector, useDispatch } from "react-redux"
+import { toggleCart as toggleCartAction } from "../../Redux/slices/cartSlice"
 
 const StyledSection = styled.section`
 text-align: right;
@@ -45,11 +46,15 @@ margin-right: 5px;
 
 export const Topbar = () => {
   const ifLogged = useSelector((state: any) => state.user.value.logged)
+  const dispatch = useDispatch()
+  const toggleCart = () =>{
+    dispatch(toggleCartAction())
+    }
   return (
     <StyledSection>
       {!ifLogged && <StyledLink to="/signin"><StyledIcon icon={faArrowRightToBracket} />Login / Register</StyledLink>}
       {ifLogged && <StyledLink to="/"><StyledIcon icon={faUser} />My account</StyledLink>}
-      <StyledSpan><StyledIcon icon={faBasketShopping} />Cart</StyledSpan>
+      <StyledSpan onClick={toggleCart}><StyledIcon icon={faBasketShopping} />Cart</StyledSpan>
     </StyledSection>
   )
 }

@@ -2,6 +2,7 @@ export interface CartItemInteface{
     id:string,
     name: string,
     price: number,
-    totalPrice: number,
-    img: string
+    discount: number,
+    img: string,
+    size: string
 }

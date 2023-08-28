@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {collection, getDocs} from "firebase/firestore"
 import { db } from '../Firebase/config'
 import { useLocation, useParams } from 'react-router-dom'
@@ -6,7 +6,10 @@ import { useProduct } from '../hooks/useProduct'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { InfoBox } from '../Components/InfoBox/infoBox'
-
+import { SubmitButton } from '../Components/Buttons/submitButton'
+import { useDispatch,} from 'react-redux';
+import {add, remove} from "../Redux/slices/cartSlice"
+import { useStock } from '../hooks/useStock'
 
 const StyledArticle = styled.article`
 display: flex;
@@ -19,6 +22,11 @@ flex: 1;
 const StyledRight = styled.div`
 flex: 1;
 padding-left: 8rem;
+display: flex;
+flex-direction: column;
+gap: 5rem;
+align-items: center;
+padding-top: 10rem;
 
 `
 const MainImg = styled.div`
@@ -44,15 +52,43 @@ height: 10rem;
 cursor: pointer;
 `
 
-const StyledH2 = styled.h2``
+const StyledH2 = styled.h2`
+font-family: "Bebas Neue";
+font-size: 4rem;
+`
+
+const StyledH3 = styled.h3`
+font-size: 3rem;`
+
+const StyledButtons = styled.div`
+display: flex;
+gap: 3rem;
+`
+
+const StyledSelect = styled.select`
+width: 20rem;
+`
+
+const StyledSelectSection = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+`
 
 export const Product = () => {
   const {id} = useParams();
   const data = useProduct(id as string)
+  const stock = useStock(id as string)
+
+ 
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  const [mainImg, setMainImg] = useState('')
+
+  const [mainImg, setMainImg] = useState<string>('')
+  const [selectedSize, setSelectedSize] = useState<string>("")
 
   useEffect(() => {
     if (data) {
@@ -64,10 +100,29 @@ export const Product = () => {
     }
   }, [data])
 
+  useEffect(()=>{
+    stock && setSelectedSize(stock[0])
+  },[stock])
 
- 
 
-  
+ const addToCart = () =>{
+  dispatch(add({
+    id: data?.id || "",
+    name: data?.name || "",
+    price: data?.price || 0,
+    discount: data?.discount || 0,
+    img: data?.imgs[0] || "",
+    size: selectedSize
+}))
+
+ }
+
+ const buyNow = () =>{
+  addToCart()
+  navigate("/checkout")
+ }
+
+ console.log(selectedSize)
  
     return (
 <StyledArticle>
@@ -83,6 +138,22 @@ export const Product = () => {
   </StyledLeft>
   <StyledRight>
     <StyledH2>{data?.name}</StyledH2>
+    <StyledH3>${data?.price}</StyledH3>
+    <StyledButtons><SubmitButton title="Add to cart" action={addToCart}></SubmitButton>
+    <SubmitButton title="Buy now" action={buyNow}></SubmitButton></StyledButtons>
+    <StyledSelectSection>
+    <p>Select size:</p>
+    <StyledSelect onChange={(e:React.ChangeEvent<HTMLSelectElement>)=> setSelectedSize(e.target.value)}>
+  {stock.includes("XS") && <option value="XS">XS</option>}
+  {stock.includes("S") && <option value="S">S</option>}
+  {stock.includes("M") && <option value="M">M</option>}
+  {stock.includes("L") && <option value="L">L</option>}
+  {stock.includes("XL") && <option value="XL">XL</option>}
+  {stock.includes("XXL") && <option value="XXL">XXL</option>}
+  {stock.includes("XXXL") && <option value="XXXL">XXXL</option>}
+  {stock.includes("XXXXL") && <option value="XXXXL">XXXXL</option>}
+</StyledSelect>
+</StyledSelectSection>
   </StyledRight>
 </StyledArticle>
    

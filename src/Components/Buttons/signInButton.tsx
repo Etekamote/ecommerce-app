@@ -3,12 +3,12 @@ import { styled } from 'styled-components'
 
 
 const StyledButton = styled.button<{$open?: boolean}>`
-background-color: ${props => props.$open ? "#fff" : "#0a66fa"};
-border: 1px solid #0a66fa;
+background-color: ${props => props.$open ? "#fff" : "#000"};
+border: 1px solid #000;
 width: 15rem;
 height: 5rem;
 border-radius: 8px;
-color: ${props => props.$open ? "#0a66fa" : "#fff"};
+color: ${props => props.$open ? "#000" : "#fff"};
 cursor: pointer;
 font-size: 1.6rem;
 

@@ -14,7 +14,7 @@ flex-direction: column;
 gap: 1.5rem;
 `
 const StyledInput = styled.input`
-border: 1px solid #0a66fa;
+border: 1px solid #000;
 height: 3rem;
 width: 20rem;
 `
@@ -23,7 +23,7 @@ display: inline-block;
 text-align: left;
 margin-bottom: 5px;
 font-size: 1.4rem;
-color: #0a66fa;
+color: #000;
 `
 const StyledInputGroup = styled.div`
 display: flex;

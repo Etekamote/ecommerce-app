@@ -69,8 +69,8 @@ gap: 2rem;
 
 `
 
-const StyledPrice = styled.span<{sale: boolean}>`
-text-decoration: ${props => props.sale ? "line-through": "none"}
+const StyledPrice = styled.span<{$sale: boolean}>`
+text-decoration: ${props => props.$sale ? "line-through": "none"}
 
 `
 
@@ -96,8 +96,8 @@ export const ProductItem = ({ product }: { product: ProductInterface }) => {
       <StyledP>
       <StyledLink to={`../product/${id}`}><StyledH2>{name}</StyledH2></StyledLink>
       <StyledPriceBox>
-        <StyledPrice sale={sale}>${price}</StyledPrice>
-        {sale && <StyledPrice sale={false}>${(price * (100 - discount)/100).toFixed(2)}</StyledPrice>}
+        <StyledPrice $sale={sale}>${price}</StyledPrice>
+        {sale && <StyledPrice $sale={false}>${(price * (100 - discount)/100).toFixed(2)}</StyledPrice>}
       </StyledPriceBox>
       </StyledP>
       

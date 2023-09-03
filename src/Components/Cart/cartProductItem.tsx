@@ -1,6 +1,6 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../Redux/slices/cartSlice'
@@ -42,7 +42,7 @@ cursor: pointer;
 `
 
 
-export const CartProductItem = ({data}) => {
+export const CartProductItem = ({data, setTotalPrice}) => {
     
     const dispatch = useDispatch()
 
@@ -50,13 +50,20 @@ export const CartProductItem = ({data}) => {
         dispatch(remove(id))
     }
 
+    useEffect(()=>{
+        setTotalPrice(prev => prev + data.price)
+        return () => {
+          setTotalPrice(prev => prev - data.price) 
+        }
+    },[data.price])
+
+
   return (
     <StyledCartProductItem>
         <StyledProductImg src={data.img} alt={data.name} />
         <StyledDescription>
             <StyledName>{data.name}</StyledName>
             <StyledPrice $discount={data.discount > 0} >${data.price}</StyledPrice>
-           {data.discount> 0 && <StyledPrice $discount={false}>${(data.price * (100 - data.discount)/100).toFixed(2)}</StyledPrice>}
         </StyledDescription>
         <StyledTrash icon={faTrash} onClick={()=>{removeItem(data.id)}} />
     </StyledCartProductItem>

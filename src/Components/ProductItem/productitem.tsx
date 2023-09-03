@@ -53,15 +53,7 @@ font-family: "Bebas Neue";
 
 `
 
-const StyledSpan = styled.span`
-position: absolute;
-top: 0;
-right: 0;
-background-color: red;
-color: #fff;
-z-index: 999;
-padding: 5px;
-`
+
 
 const StyledPriceBox = styled.p`
 display: flex;
@@ -84,20 +76,20 @@ text-decoration: none;
 `
 
 export const ProductItem = ({ product }: { product: ProductInterface }) => {
-  const { id, discount, imgs, name, price, sale } = product;
+  const { id, imgs, name, price, sale } = product;
 
   return (
     <StyledArticle>
       <StyledImages>
           <StyledImage src={imgs[0]} alt={`${name} - Image 1`} />
           <SecondImage src={imgs[1]} alt={`${name} - Image 2`} />
-          {sale && <StyledSpan>{discount}%</StyledSpan>}
+        
       </StyledImages>
       <StyledP>
       <StyledLink to={`../product/${id}`}><StyledH2>{name}</StyledH2></StyledLink>
       <StyledPriceBox>
         <StyledPrice $sale={sale}>${price}</StyledPrice>
-        {sale && <StyledPrice $sale={false}>${(price * (100 - discount)/100).toFixed(2)}</StyledPrice>}
+        
       </StyledPriceBox>
       </StyledP>
       

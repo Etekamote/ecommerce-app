@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { remove, toggleCart as toggleCartAction } from '../../Redux/slices/cartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 import { CartProductItem } from './cartProductItem'
+import { SubmitButton } from '../Buttons/submitButton'
 
 const StyledCart = styled.section<{$open?: boolean}>`
 width: 50rem;
@@ -31,18 +32,35 @@ const StyledProducts = styled.div`
 display: flex;
 flex-direction: column;
 gap: 2rem;
+margin-bottom: 2rem;
 `
 const StyledH2 = styled.h2`
 font-size: 4rem;
 margin-bottom: 5rem;
+`
+
+const StyledPriceBox = styled.div`
+display: flex;
+justify-content: space-between;
+margin-bottom: 2rem;
+`
+
+const StyledH4 = styled.h4`
+
 
 `
+
+const StyledPrice = styled.span`
+
+`
+
 
 
 
 export const Cart = () => {
     const cartItems = useSelector((state:any) => state.cart.value.items)
     const isCartOpen = useSelector((state:any) => state.cart.value.isOpen)
+    const [totalPrice, setTotalPrice] = useState<number>(0.00)
     const dispatch = useDispatch()
     const toggleCart = () =>{
     dispatch(toggleCartAction())
@@ -52,8 +70,13 @@ export const Cart = () => {
         <StyledCloseButton onClick={toggleCart}>X</StyledCloseButton>
         <StyledH2>Cart</StyledH2>
         <StyledProducts>
-        {cartItems.map(item => <CartProductItem data={item}/>)}
+        {cartItems.map(item => <CartProductItem data={item} key={item.id} setTotalPrice={setTotalPrice}/>)}
         </StyledProducts>
+        <StyledPriceBox>
+            <StyledH4>Total</StyledH4>
+            <StyledPrice>${totalPrice}</StyledPrice>
+        </StyledPriceBox>
+        <SubmitButton title="Checkout" />
     </StyledCart>
   )
 }

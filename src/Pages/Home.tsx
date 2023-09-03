@@ -13,7 +13,9 @@ export const Home = () => {
   return (
     <StyledMain>
       <Hero />
+      <RandomProducts category="sale" />
       <RandomProducts category="men" />
+      <RandomProducts category="women" />
       </StyledMain>
       
     

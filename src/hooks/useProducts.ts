@@ -1,7 +1,7 @@
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../Firebase/config";
 import { useState, useEffect } from "react";
-import { ProductInterface } from "../types/ProductInterface";
+import { ProductInterface } from "../interfaces/ProductInterface";
 
 export function useProducts(whereValue?: string, secondWhereValue?: string): ProductInterface[] {
   const ref = collection(db, "products");

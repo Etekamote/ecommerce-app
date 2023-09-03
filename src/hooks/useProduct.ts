@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../Firebase/config";
-import { ProductInterface } from "../types/ProductInterface";
+import { ProductInterface } from "../interfaces/ProductInterface";
 import { useEffect, useState } from "react";
 
 export function useProduct(id: string): ProductInterface | null {

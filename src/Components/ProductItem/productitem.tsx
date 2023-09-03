@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductInterface } from './../../types/ProductInterface';
+import { ProductInterface } from '../../interfaces/ProductInterface';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 

@@ -26,11 +26,10 @@ margin-left: 2rem;
 const StyledName = styled.h3`
 font-size: 1.6rem;
 `
-const StyledPrice = styled.span<{$discount: boolean}>`
+const StyledPrice = styled.span`
 font-size: 1.5rem;
 color: grey;
-text-decoration: ${props => props.$discount ? "line-through" : "none"};
-font-weight: ${props => props.$discount ? "none" : "bold"};
+font-weight: bold;
 `
 
 const StyledTrash = styled(FontAwesomeIcon)`
@@ -39,6 +38,10 @@ right: 5rem;
 top: 50%;
 transform: translateY(-50%);
 cursor: pointer;
+`
+
+const StyledAmount = styled.span`
+font-size: 1.3rem;
 `
 
 
@@ -51,11 +54,11 @@ export const CartProductItem = ({data, setTotalPrice}) => {
     }
 
     useEffect(()=>{
-        setTotalPrice(prev => prev + data.price)
+        setTotalPrice(prev => prev + (data.price * data.amount))
         return () => {
-          setTotalPrice(prev => prev - data.price) 
+          setTotalPrice(prev =>prev -(data.price * data.amount)) 
         }
-    },[data.price])
+    },[data.price, data.amount])
 
 
   return (
@@ -63,7 +66,8 @@ export const CartProductItem = ({data, setTotalPrice}) => {
         <StyledProductImg src={data.img} alt={data.name} />
         <StyledDescription>
             <StyledName>{data.name}</StyledName>
-            <StyledPrice $discount={data.discount > 0} >${data.price}</StyledPrice>
+            <StyledPrice >${data.price}</StyledPrice>
+            <StyledAmount>Qty: {data.amount}</StyledAmount>
         </StyledDescription>
         <StyledTrash icon={faTrash} onClick={()=>{removeItem(data.id)}} />
     </StyledCartProductItem>

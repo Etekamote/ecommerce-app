@@ -110,7 +110,8 @@ export const Product = () => {
     name: data?.name || "",
     price: data?.price || 0,
     img: data?.imgs[0] || "",
-    size: selectedSize
+    size: selectedSize,
+    amount: 1
 }))
 
  }

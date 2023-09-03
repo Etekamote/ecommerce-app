@@ -14,7 +14,18 @@ export const cartSlice = createSlice({
     initialState: {value:{isOpen: false, items: []}} as CartState,
     reducers:{
         add: (state: CartState, action: PayloadAction<CartItemInteface>)=>{
-            state.value.items = [...state.value.items, action.payload ]
+            let itemExists = false;
+            
+            state.value.items.forEach(item =>{
+                if(item.id == action.payload.id){
+                    item.amount += 1
+                    itemExists = true
+                }
+            })
+            if(!itemExists){
+                state.value.items = [...state.value.items, action.payload ]
+            }
+            
             state.value.isOpen = true
         },
         remove:(state: CartState, action:PayloadAction<string>)=>{

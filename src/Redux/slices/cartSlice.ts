@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
             let itemExists = false;
             
             state.value.items.forEach(item =>{
-                if(item.id == action.payload.id){
+                if(item.id === action.payload.id){
                     item.amount += 1
                     itemExists = true
                 }
@@ -29,7 +29,7 @@ export const cartSlice = createSlice({
             state.value.isOpen = true
         },
         remove:(state: CartState, action:PayloadAction<string>)=>{
-            state.value.items = state.value.items.filter(item => item.id != action.payload)
+            state.value.items = state.value.items.filter(item => item.id !== action.payload)
         },
         toggleCart:(state: CartState)=>{
             state.value.isOpen = !state.value.isOpen

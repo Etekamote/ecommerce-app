@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { remove } from '../../Redux/slices/cartSlice'
+import { Link } from 'react-router-dom'
 
 
 const StyledCartProductItem = styled.article`
@@ -23,8 +24,11 @@ flex-direction: column;
 margin-left: 2rem;
 `
 
-const StyledName = styled.h3`
+const StyledName = styled(Link)`
 font-size: 1.6rem;
+color: black;
+text-decoration: none;
+font-weight: bold;
 `
 const StyledPrice = styled.span`
 font-size: 1.5rem;
@@ -65,7 +69,7 @@ export const CartProductItem = ({data, setTotalPrice}) => {
     <StyledCartProductItem>
         <StyledProductImg src={data.img} alt={data.name} />
         <StyledDescription>
-            <StyledName>{data.name}</StyledName>
+            <StyledName to={`product/${data.id}`}>{data.name}</StyledName>
             <StyledPrice >${data.price}</StyledPrice>
             <StyledAmount>Qty: {data.amount}</StyledAmount>
         </StyledDescription>

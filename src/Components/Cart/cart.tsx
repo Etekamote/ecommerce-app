@@ -74,7 +74,7 @@ export const Cart = () => {
         </StyledProducts>
         <StyledPriceBox>
             <StyledH4>Total</StyledH4>
-            <StyledPrice>${totalPrice}</StyledPrice>
+            <StyledPrice>${totalPrice.toFixed(2)}</StyledPrice>
         </StyledPriceBox>
         <SubmitButton title="Checkout" />
     </StyledCart>

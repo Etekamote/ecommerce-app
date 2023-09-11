@@ -64,16 +64,7 @@ display: flex;
 gap: 3rem;
 `
 
-const StyledSelect = styled.select`
-width: 20rem;
-`
 
-const StyledSelectSection = styled.section`
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1rem;
-`
 
 export const Product = () => {
   const {id} = useParams();
@@ -110,7 +101,6 @@ export const Product = () => {
     name: data?.name || "",
     price: data?.price || 0,
     img: data?.imgs[0] || "",
-    size: selectedSize,
     amount: 1
 }))
 
@@ -140,19 +130,7 @@ export const Product = () => {
     <StyledH3>${data?.price}</StyledH3>
     <StyledButtons><SubmitButton title="Add to cart" action={addToCart}></SubmitButton>
     <SubmitButton title="Buy now" action={buyNow}></SubmitButton></StyledButtons>
-    <StyledSelectSection>
-    <p>Select size:</p>
-    <StyledSelect onChange={(e:React.ChangeEvent<HTMLSelectElement>)=> setSelectedSize(e.target.value)}>
-  {stock.includes("XS") && <option value="XS">XS</option>}
-  {stock.includes("S") && <option value="S">S</option>}
-  {stock.includes("M") && <option value="M">M</option>}
-  {stock.includes("L") && <option value="L">L</option>}
-  {stock.includes("XL") && <option value="XL">XL</option>}
-  {stock.includes("XXL") && <option value="XXL">XXL</option>}
-  {stock.includes("XXXL") && <option value="XXXL">XXXL</option>}
-  {stock.includes("XXXXL") && <option value="XXXXL">XXXXL</option>}
-</StyledSelect>
-</StyledSelectSection>
+ 
   </StyledRight>
 </StyledArticle>
    

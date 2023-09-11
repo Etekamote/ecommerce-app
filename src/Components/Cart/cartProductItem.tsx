@@ -72,7 +72,6 @@ export const CartProductItem = ({data, setTotalPrice}) => {
             <StyledName to={`product/${data.id}`}>{data.name}</StyledName>
             <StyledPrice >${data.price}</StyledPrice>
             <StyledAmount>Qty: {data.amount}</StyledAmount>
-            <StyledAmount>Size: {data.size}</StyledAmount>
         </StyledDescription>
         <StyledTrash icon={faTrash} onClick={()=>{removeItem(data.id)}} />
     </StyledCartProductItem>

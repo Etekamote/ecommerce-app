@@ -9,6 +9,7 @@ import { Contact } from './Pages/Contact';
 import { Faq } from './Pages/Faq';
 import { SignIn } from './Pages/SignIn';
 import { Cart } from './Components/Cart/cart';
+import { Footer } from './Components/Footer/footer';
 
 
 
@@ -43,6 +44,7 @@ export const Root = () =>{
     <Header />
     <Cart />
     <Outlet />
+    <Footer />
     </>
   )
 }
